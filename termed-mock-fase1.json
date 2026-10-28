@@ -1,0 +1,234 @@
+{
+  "uuid": "4fcab222-2952-460f-b6f6-dfafb2f9147d",
+  "lastMigration": 33,
+  "name": "TerMed mock - Fase 1",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "9b8e26e3-4014-4762-bdf7-7e068225c44b",
+      "type": "http",
+      "documentation": "Autenticación TerMed simulada. Recibe grant_type, client_id y client_secret; devuelve un token ficticio.",
+      "method": "post",
+      "endpoint": "io/token",
+      "responses": [
+        {
+          "uuid": "8797b37f-84fb-4c83-a3e3-a0ab4059249e",
+          "body": "{\n  \"access_token\": \"mock-access-token\",\n  \"refresh_token\": \"mock-refresh-token\",\n  \"user_id\": \"mock-user-001\",\n  \"device_id\": \"mock-device-001\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Obtener token (client_credentials)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "e22caa5b-f891-427d-8ee8-f2afb8869a5f",
+      "type": "http",
+      "documentation": "Consulta CUM por el parámetro de consulta codigos. Respuesta ficticia de prueba.",
+      "method": "get",
+      "endpoint": "io/terminologias/cum",
+      "responses": [
+        {
+          "uuid": "79722b16-664c-4304-9bcb-7d1abddc1f45",
+          "body": "{\n  \"codTecBuscado\": \"MOCK-CUM-001\",\n  \"data\": {\n    \"codigo\": \"MOCK-CUM-001\",\n    \"descripcion\": \"Medicamento de ejemplo para pruebas\",\n    \"principioActivo\": \"PRINCIPIO-ACTIVO-DE-EJEMPLO\",\n    \"concentracion\": \"500 mg\",\n    \"formaFarmaceutica\": \"TABLETA\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Consultar un medicamento CUM (GET)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "007e075d-b574-491f-ad95-27635af322b1",
+      "type": "http",
+      "documentation": "Consulta por múltiples códigos CUM. Enviar JSON: {\"codigos\":[\"MOCK-CUM-001\",\"MOCK-CUM-002\"]}. Respuesta ficticia de prueba.",
+      "method": "post",
+      "endpoint": "io/terminologias/cum",
+      "responses": [
+        {
+          "uuid": "49fd53d1-8150-46a8-8edf-b2ac754d587c",
+          "body": "{\n  \"codigosBuscados\": [\n    \"MOCK-CUM-001\",\n    \"MOCK-CUM-002\"\n  ],\n  \"data\": [\n    {\n      \"codigo\": \"MOCK-CUM-001\",\n      \"descripcion\": \"Medicamento de ejemplo 1\",\n      \"principioActivo\": \"PRINCIPIO-ACTIVO-DE-EJEMPLO-1\",\n      \"concentracion\": \"500 mg\",\n      \"formaFarmaceutica\": \"TABLETA\"\n    },\n    {\n      \"codigo\": \"MOCK-CUM-002\",\n      \"descripcion\": \"Medicamento de ejemplo 2\",\n      \"principioActivo\": \"PRINCIPIO-ACTIVO-DE-EJEMPLO-2\",\n      \"concentracion\": \"250 mg\",\n      \"formaFarmaceutica\": \"CAPSULA\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Consultar medicamentos CUM (POST)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "e408ee6c-1457-418c-b036-8c1e6edba429",
+      "type": "http",
+      "documentation": "Consulta CIE-10 por el parámetro de consulta codigo. Respuesta ficticia de prueba.",
+      "method": "get",
+      "endpoint": "io/terminologias/diagnosticoCie10",
+      "responses": [
+        {
+          "uuid": "b5e1d556-1c10-4911-ac2d-a3d4ca268a5f",
+          "body": "{\n  \"codigoBuscado\": \"J06.9\",\n  \"data\": {\n    \"codigo\": \"J06.9\",\n    \"descripcion\": \"Diagnóstico de ejemplo para pruebas\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Consultar diagnóstico CIE-10 (GET)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "9ae8cd8c-0476-4f27-a3d3-ddc128d1521d",
+      "type": "http",
+      "documentation": "Consulta por múltiples códigos CIE-10. Enviar JSON: {\"codigos\":[\"J06.9\",\"R51\"]}. Respuesta ficticia de prueba.",
+      "method": "post",
+      "endpoint": "io/terminologias/diagnosticoCie10",
+      "responses": [
+        {
+          "uuid": "aec90561-3452-4fbe-b233-eb09cd6dc227",
+          "body": "{\n  \"codigosBuscados\": [\n    \"J06.9\",\n    \"R51\"\n  ],\n  \"data\": [\n    {\n      \"codigo\": \"J06.9\",\n      \"descripcion\": \"Diagnóstico de ejemplo 1\"\n    },\n    {\n      \"codigo\": \"R51\",\n      \"descripcion\": \"Diagnóstico de ejemplo 2\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Consultar diagnósticos CIE-10 (POST)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "9b8e26e3-4014-4762-bdf7-7e068225c44b"
+    },
+    {
+      "type": "route",
+      "uuid": "e22caa5b-f891-427d-8ee8-f2afb8869a5f"
+    },
+    {
+      "type": "route",
+      "uuid": "007e075d-b574-491f-ad95-27635af322b1"
+    },
+    {
+      "type": "route",
+      "uuid": "e408ee6c-1457-418c-b036-8c1e6edba429"
+    },
+    {
+      "type": "route",
+      "uuid": "9ae8cd8c-0476-4f27-a3d3-ddc128d1521d"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
